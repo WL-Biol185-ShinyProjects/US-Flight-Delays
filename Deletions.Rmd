@@ -48,4 +48,41 @@ DviAirportLandings
 ##  saveRDS('b', file = "201b 8_Flights.Rdata")
 
 
+<<<<<<< HEAD
 
+=======
+Joining 2018 and 2022 data!
+First used rbind to join sheets b and c, which contain dfs for 2018 and 2022
+Then found 2020 data contained different number of columns, and used -c to drop the two additional columns, which were character vectors on the advertising airline
+Converted airline and origin sheets from characters to factors to save space
+```{r}
+library(dplyr)
+b <- readRDS(file = "2022flights.Rdata")
+c <- readRDS(file = "2018Flights.Rdata")
+help(join)
+d <- rbind(b, c)
+View(d)
+e <- readRDS(file = "2020flights2.Rdata")
+rm(a)
+rm(b)
+rm(c)
+f <- e[-c(33,34)]
+g <- rbind(d, f)
+rm(e)
+library(tibble)
+h <- d[-c(21, 23)]
+i <- f[-c(21, 23)]
+rm(d)
+rm(f)
+j <- rbind(h, i)
+j <- h[-c(21, 23)]
+k <- i[-c(21, 23)]
+as.factor(j$Airline)
+as.factor(k$Airline)
+as.factor(j$Origin)
+as.factor(k$Origin)
+l <- rbind(j, k)
+j <- j[-c(42)]
+k <- k[-c(42)]
+saveRDS('l', file = "all_flights.Rdata")
+>>>>>>> 78021c480158b53fa8a3ba054c2a897b4ed2416e
