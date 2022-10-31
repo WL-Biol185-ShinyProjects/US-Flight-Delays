@@ -79,6 +79,12 @@ as.factor(k$Airline)
 as.factor(j$Origin)
 as.factor(k$Origin)
 l <- rbind(j, k)
+View(j)
 j <- j[-c(42)]
 k <- k[-c(42)]
-saveRDS('l', file = "all_flights.Rdata")
+saveRDS(l, file = "all_flights_clean.Rdata")
+j <-j[-c(21,22,23,24)]
+k <- k[-c(21,22,23,24)]
+l <- rbind (j, k)
+rm(j)
+rm(k)
