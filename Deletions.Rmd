@@ -84,14 +84,21 @@ l <- rbind(j, k)
 View(j)
 j <- j[-c(42)]
 k <- k[-c(42)]
-<<<<<<< HEAD
+saveRDS('l', file = "all_flights.Rdata")
+
+
+
+
+
+
+
+
+
+
+
+
 saveRDS(l, file = "all_flights_clean.Rdata")
 j <-j[-c(21,22,23,24)]
 k <- k[-c(21,22,23,24)]
 l <- rbind (j, k)
 rm(j)
-rm(k)
-=======
-saveRDS('l', file = "all_flights.Rdata")
-```
->>>>>>> 60a538aa9dc35e0c8bf09dc614048579af1b4bec
