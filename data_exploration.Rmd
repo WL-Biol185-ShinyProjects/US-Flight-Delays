@@ -27,11 +27,36 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 ```{r}
-flights <- readRDS(file = "wetland/2020flights.Rdata")
-readRDS(file = "wetland/all_flights.Rdata")
-rm(flights)
+library(ggplot2)
+library(tidyverse)
+l <- readRDS(file = "all_flights_clean.Rdata")
+flights <- l
+rm(l)
 View(flights)
 flights %>%
-  group_by()
+  group_by(Airline) %>%
+  summarise(ave_delay = mean(DepDelay, na.rm = TRUE)) %>%
+  ggplot(aes(Airline, ave_delay)) +
+  geom_bar(stat = 'identity')
+flights %>%
+  group_by(Origin, Distance) %>%
+  summarise(ave_distance = median(Distance, na.rm = TRUE)) %>%
+  ggplot(aes(Origin, Distance)) +
+  geom_bar(stat = 'identity')
+as.integer(flights$Month)
+View(flights)
+flights %>%
+  group_by(Month) %>%
+  summarise(ave_delay = mean(DepDelay, na.rm = TRUE)) %>%
+  ggplot(aes(Month, ave_delay)) +
+  scale_x_continuous(name = " ", breaks = c(1:12)) +
+  geom_bar(stat = 'identity')
+flights %>%
+  group_by(FlightDate) %>%
+  summarise(ave_delay = mean(DepDelay, na.rm = TRUE)) %>%
+  ggplot(aes(FlightDate, ave_delay)) +
+  geom_count()
+
+
 ```
 
