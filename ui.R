@@ -13,7 +13,12 @@ dashboardPage(
     
     box(
       "Flight Time Delay Status", br(), "Based on Yearly Data from 2018, 2020, 2022",
-      sliderInput("slider", "Departure Time:", 1, 2400, 1200),
+      textInput("text", "Departure Time:"),
+      textInput("text", "Arrival Time:"),
+      textInput("text", "Origin (Airport):"),
+      textInput("text", "Destination (Airport):"),
+      textInput("text", "Airline:"),
+      textInput("text", "Flight Date:"),
       textInput("text", "Flight Status:")
       )
 )
