@@ -22,7 +22,13 @@ dashboardPage(
       tabItem(tabName = "predictor",
             h2("Flight Time Predictor"),
             fluidRow(
-              box(plotOutput("plot1")), #plot of predicted delays 
+              tabBox(
+                title = "Output",
+                # The id lets us use input$tabset1 on the server to find the current tab
+                id = "tabset1", height = "250px",
+                tabPanel("Dates", "Your flight vs. Other Dates", plotOutput("plot1")),
+                tabPanel("Airlines", "Your flight vs. Other Airlines", plotOutput('plot2'))
+              ),
               
               box(
                 "Flight Time Delay Status", br(), "Based on Yearly Data from 2018, 2020, 2022",
@@ -32,7 +38,6 @@ dashboardPage(
                 textInput("text", "Destination (Airport):"),
                 textInput("text", "Airline:"),
                 textInput("text", "Flight Date:"),
-                textInput("text", "Flight Status:")
               )
             )
               ),
