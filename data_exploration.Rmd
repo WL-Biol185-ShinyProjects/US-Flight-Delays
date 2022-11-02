@@ -56,7 +56,10 @@ flights %>%
   summarise(ave_delay = mean(DepDelay, na.rm = TRUE)) %>%
   ggplot(aes(FlightDate, ave_delay)) +
   geom_count()
-
+flights %>%
+  group_by(FlightDate) %>%
+  summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE))
 
 ```
+For final plot, will need to take average of the three dates - create column that has day / month but no year?
 
