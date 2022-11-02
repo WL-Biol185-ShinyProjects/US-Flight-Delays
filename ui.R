@@ -11,7 +11,9 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Flight Time Predictor", tabName = "predictor"),
-      menuItem("Data", tabName = "data")
+      menuItem("Data", tabName = "data"),
+      menuItem("Map of Airports", tabName = "map"),
+      menuItem("About", tabName = "about")
                 )
   ),
     
@@ -38,11 +40,19 @@ dashboardPage(
 
       tabItem(tabName = "data",
               h2("Data")
+              ), 
+      tabItem(tabName = "map",
+              h2("Map of Airports"), 
+      ), 
+      tabItem(tabName = "about",
+              h2("About our Project")
               )
+    )
+              
             ),
     
 )
-)
+
 
 
 
