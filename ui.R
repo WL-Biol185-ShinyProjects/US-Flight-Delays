@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(leaflet)
 
 
 
@@ -48,6 +49,9 @@ dashboardPage(
               ), 
       tabItem(tabName = "map",
               h2("Map of Airports"), 
+              fluidPage(
+                leafletOutput("mymap")
+              )
       ), 
       tabItem(tabName = "about",
               h2("About our Project")
