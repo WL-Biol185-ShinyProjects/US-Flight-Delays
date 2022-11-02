@@ -102,3 +102,23 @@ j <-j[-c(21,22,23,24)]
 k <- k[-c(21,22,23,24)]
 l <- rbind (j, k)
 rm(j)
+
+
+##figuring out how to get a lone day
+library(lubridate)
+yday<-(flights$FlightDate)
+as.Date(flights$FlightDate)
+help(yday)
+day(flights$FlightDate)
+rm(yday)
+as.factor(flights$FlightDate)
+flights$flightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
+flights <- flights[-c(21,22)]
+yday(flights$FlightDate)
+rm(yday)
+flights <- flights[-c(1)]
+as.Date(flights$flightDate) 
+day(flights$flightDate)
+flights$flight_day <- day(flights$flightDate)
+flights <- flights[-c(36)]
+flights$month_day <- yday(flights$flightDate)
