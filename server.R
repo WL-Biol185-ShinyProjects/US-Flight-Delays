@@ -12,7 +12,7 @@ function(input, output) {
   output$mymap <- renderLeaflet ({
   m <- leaflet () %>%
     addTiles() %>%
-    serView(lng=37.0902, lat = 40.730610, zoom=10)
+    setView(lng=-95.15, lat =40 , zoom=3.5)
   m
   })
   }
