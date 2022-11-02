@@ -2,14 +2,31 @@ library(shiny)
 library(shinydashboard)
 
 
+
+
+
+
 dashboardPage(
   dashboardHeader(title = "Flight Status Predictor"),
   dashboardSidebar(
-    sidebarMenuOutput("Menu")
+    sidebarMenu(
+      menuItem("Flight Time Predictor", tabName = "predictor"),
+      menuItem("Data", tabName = "data")
+                )
   ),
-  dashboardBody(  
+    
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "predictor",
+            h2("Flight Time Predictor")
+              ),
+
+      tabItem(tabName = "data",
+              h2("Data")
+              )
+            ),
     fluidRow(
-    box(plotOutput("plot1")),
+    box(plotOutput("plot1")), #plot of predicted delays 
     
     box(
       "Flight Time Delay Status", br(), "Based on Yearly Data from 2018, 2020, 2022",
