@@ -15,5 +15,9 @@ function(input, output) {
     setView(lng=-95.15, lat =40 , zoom=3.5)
   m
   })
+  O <- (output$value <- renderText({ input$origin }))
+  D <- (output$value <- renderText({ input$destination }))
+  A <- (output$value <- renderText({ input$airline }))
+  dates <- (output$value <- renderText({ input$date }))
   }
 
