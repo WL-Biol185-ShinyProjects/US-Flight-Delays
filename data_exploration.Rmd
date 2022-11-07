@@ -29,7 +29,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ```{r}
 library(ggplot2)
 library(tidyverse)
-l <- readRDS(file = "all_flights_clean.Rdata")
+flights <- readRDS(file = "all_flights_clean.Rdata")
 flights <- l
 rm(l)
 View(flights)
@@ -59,7 +59,22 @@ flights %>%
 flights %>%
   group_by(FlightDate) %>%
   summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE))
-
+##function sorts by the day of the year, takes the average of all flights on that day, and returns the averaae delay
+View(flights)
+flights %>%
+  group_by(year_day, Airline) %>%
+  summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+  ggplot(aes(year_day, ave_delay)) +
+  geom_point()
+flights %>%
+  group_by(year_day, Airline) %>%
+  summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+  ggplot(aes(Airline, ave_delay)) +
+  geom_smooth()
+##essential code - creates a vector containing the day of the year of a flight
+library(lubridate)
+flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
+flights$year_day <- yday(flights$FlightDate)              
 ```
 For final plot, will need to take average of the three dates - create column that has day / month but no year?
 
