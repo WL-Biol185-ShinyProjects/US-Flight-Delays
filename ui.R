@@ -1,7 +1,7 @@
 library(shiny)
 library(shinydashboard)
 library(leaflet)
-
+library(DT)
 
 
 
@@ -34,7 +34,7 @@ dashboardPage(
               box(
                 "Flight Time Delay Status", br(), "Based on Yearly Data from 2018, 2020, 2022",
                 textInput("origin", "Origin (Airport):"),
-                actionButton('obutton', 'Submit', class = 'btn-success'),
+            ##  actionButton('obutton', 'Submit', class = 'btn-outline-primary', type = 'submit'),
                 textInput("destination", "Destination (Airport):"),
                 textInput("airline", "Airline:"),
                 dateInput("date", "Flight Date:", format = "mm/dd/yy"),
@@ -48,7 +48,8 @@ dashboardPage(
       
 
       tabItem(tabName = "data",
-              h2("Data")
+              h2("Data"),
+              tableOutput('table')
               ), 
       tabItem(tabName = "map",
               h2("Map of Airports"), 
