@@ -1,7 +1,7 @@
 library(shiny)
 library(shinydashboard)
 library(leaflet)
-
+library(DT)
 
 
 
@@ -49,10 +49,7 @@ dashboardPage(
 
       tabItem(tabName = "data",
               h2("Data"),
-              fluidRow(
-                box(
-                column(12,
-                  tableOutput('table'))))
+              tableOutput('table')
               ), 
       tabItem(tabName = "map",
               h2("Map of Airports"), 
