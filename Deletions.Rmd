@@ -127,3 +127,8 @@ flights$year_day <- yday(flights$flightDate)
 library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
 flights$year_day <- yday(flights$flightDate)
+
+## airportr package, gives lat and longitude for each airport
+install.packages("airportr")
+library(airportr)
+airport_location('NAME", input_type = "IATA")
