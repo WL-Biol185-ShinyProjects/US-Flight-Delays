@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(leaflet)
 
 
 
@@ -32,12 +33,11 @@ dashboardPage(
               
               box(
                 "Flight Time Delay Status", br(), "Based on Yearly Data from 2018, 2020, 2022",
-                textInput("text", "Departure Time:"),
-                textInput("text", "Arrival Time:"),
-                textInput("text", "Origin (Airport):"),
-                textInput("text", "Destination (Airport):"),
-                textInput("text", "Airline:"),
-                textInput("text", "Flight Date:"),
+                textInput("origin", "Origin (Airport):"),
+                textInput("destination", "Destination (Airport):"),
+                textInput("airline", "Airline:"),
+                textInput("date", "Flight Date:"),
+                #read text input and create output as variable to be passed along to server function
               )
             )
               ),
@@ -48,6 +48,9 @@ dashboardPage(
               ), 
       tabItem(tabName = "map",
               h2("Map of Airports"), 
+              fluidPage(
+                leafletOutput("mymap")
+              )
       ), 
       tabItem(tabName = "about",
               h2("About our Project")
