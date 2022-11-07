@@ -65,16 +65,14 @@ dashboardPage(
     
 )
 
+  
+  
+  
+  
+  
+  
+  
 
-server <- function(input, output) {
-  
-  
-  
-  
-  
-  
-  
-}
 
 
 

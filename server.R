@@ -21,10 +21,10 @@ function(input, output) {
   A <- (output$value <- renderText({ input$airline }))
   dates <- yday(output$value <- renderText({ input$date }))
   flights$year_day <- yday(flights$FlightDate)  
-    flights %>%
+  flights %>%
     group_by(year_day, Airline, Origin, Dest) %>%
     select(c(O, D, A, dates))
-    summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+  summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
     ggplot(aes(input$date, ave_delay)) +
     geom_point()
   }
