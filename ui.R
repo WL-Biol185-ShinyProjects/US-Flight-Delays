@@ -36,9 +36,12 @@ dashboardPage(
                 textInput("origin", "Origin (Airport):"),
                 textInput("destination", "Destination (Airport):"),
                 textInput("airline", "Airline:"),
-                textInput("date", "Flight Date:"),
+                dateInput("date", "Flight Date:", format = "mm/dd/yy"),
+               ## selectInput('origin', 'Origin(Airport)', c())
+                            
                 #read text input and create output as variable to be passed along to server function
               )
+              
             )
               ),
       
