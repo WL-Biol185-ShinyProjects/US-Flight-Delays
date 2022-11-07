@@ -59,7 +59,7 @@ library(dplyr)
 b <- readRDS(file = "2022flights.Rdata")
 c <- readRDS(file = "2018Flights.Rdata")
 help(join)
-d <- rbind(b, c)
+d <- rbind(b, c)A <- 
 View(d)
 e <- readRDS(file = "2020flights2.Rdata")
 rm(a)
@@ -128,7 +128,11 @@ library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
 flights$year_day <- yday(flights$flightDate)
 
-## airportr package, gives lat and longitude for each airport
+## airportr package, gives lat and longitude for each airport - AIRPORT MAP DATA WRANGLING
 install.packages("airportr")
 library(airportr)
-airport_location('NAME", input_type = "IATA")
+library(tidyverse)
+airport_location("NAME", input_type = "IATA")
+a <- readRDS(file = "all_flights_clean.Rdata")
+View(a)
+## is the airplane data package vectorized? Try that 
