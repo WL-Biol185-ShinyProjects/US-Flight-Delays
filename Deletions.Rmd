@@ -121,4 +121,9 @@ as.Date(flights$flightDate)
 day(flights$flightDate)
 flights$flight_day <- day(flights$flightDate)
 flights <- flights[-c(36)]
-flights$month_day <- yday(flights$flightDate)
+flights$year_day <- yday(flights$flightDate)
+
+##essential code - creates a vector containing the day of the year of a flight
+library(lubridate)
+flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
+flights$year_day <- yday(flights$flightDate)
