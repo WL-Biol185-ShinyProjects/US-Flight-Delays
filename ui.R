@@ -6,7 +6,6 @@ library(DT)
 
 
 
-
 dashboardPage(
   dashboardHeader(title = "Flight Status Predictor"),
   dashboardSidebar(
