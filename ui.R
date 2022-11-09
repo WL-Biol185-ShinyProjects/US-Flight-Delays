@@ -47,8 +47,10 @@ dashboardPage(
       
 
       tabItem(tabName = "data",
-              h2("Data"),
-              tableOutput('table')
+              fluidPage(
+                h2("Data"),
+               
+                      )
               ), 
       tabItem(tabName = "map",
               h2("Map of Airports"), 
