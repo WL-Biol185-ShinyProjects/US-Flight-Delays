@@ -140,6 +140,13 @@ View(a)
 install.packages("airportr")
 library(airportr)
 View(airports)
-## viewing of airport data set for merge (Lefthand)
-## 
+install.packages("airportr")
+c <- airports
+saveRDS(c, file = "airport_information.Rdata")
+
+
+##adding Airport IDs into App 
+##server
+airports <- readRDS("airport_information.Rdata")
+
 
