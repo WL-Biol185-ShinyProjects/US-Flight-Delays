@@ -24,7 +24,7 @@ function(input, output) {
   output$plot1 <- renderPlot( {
     flights2 %>%
       filter(Airline == input$airline, 
-             Origin == input$origin, 
+             Origin == input$origin,
              Dest == input$destination) %>%
       group_by(year_day, 
                Airline, 
@@ -47,6 +47,8 @@ function(input, output) {
     setView(lng=-95.15, lat =40 , zoom=3.5)
   m
   })
+  
+  output$table <- renderDataTable({flights2})
  
   }
 
