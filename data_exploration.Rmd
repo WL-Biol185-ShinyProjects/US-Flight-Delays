@@ -74,7 +74,19 @@ flights %>%
 ##essential code - creates a vector containing the day of the year of a flight
 library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
-flights$year_day <- yday(flights$FlightDate)              
+flights$year_day <- yday(flights$FlightDate)     
+
+A <- "Commutair Aka Champlain Enterprises, Inc."
+  D <- "DEN"
+  O <- "GJT"
+
+  
+    flights %>%
+      filter(Airline == A, Origin == O, Dest == D, FlightDate == 4/4/22) %>%
+      group_by(FlightDate, Airline, Origin, Dest) %>%
+      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+      ggplot(aes(FlightDate, ave_delay)) +
+      geom_point()
 ```
 For final plot, will need to take average of the three dates - create column that has day / month but no year?
 
