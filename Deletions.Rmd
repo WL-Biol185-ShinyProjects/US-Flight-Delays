@@ -140,5 +140,5 @@ View(a)
 install.packages("airportr")
 library(airportr)
 View(airports)
-## viewing of airport data set for merge (Lefthand) 
+## viewing of airport data set for merge (Lefthand)  
 
