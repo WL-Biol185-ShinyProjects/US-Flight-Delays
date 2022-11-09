@@ -8,7 +8,7 @@ flights2 <- flights2[-c(11:16)]
 flights2 <- flights2[-c(5:8)]
 flights2$FlightDate<-as.Date(flights2$FlightDate, format = "%m/%d/%Y")
 flights2$year_day <- yday(flights2$FlightDate)
-
+help(filter)
 function(input, output) {
   
  ## O <- (output$value <- renderText({ input$origin }))
@@ -22,8 +22,14 @@ function(input, output) {
   
   output$plot1 <- renderPlot( {
     flights2 %>%
-      filter(Airline == input$airline, Origin == input$origin, Dest == input$destination, year_day == yday(input$date)) %>%
-      group_by(year_day, Airline, Origin, Dest) %>%
+      filter(Airline == input$airline, 
+             Origin == input$origin, 
+             Dest == input$destination,
+             year_day == near(yday(input$date))) %>%
+      group_by(year_day, 
+               Airline, 
+               Origin, 
+               Dest) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
       ggplot(aes(year_day, ave_delay)) +
       geom_bar()
