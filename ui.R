@@ -49,6 +49,8 @@ dashboardPage(
       tabItem(tabName = "data",
               fluidPage(
                 h2("Data"),
+                box(
+                  dataTableOutput("table"))
                
                       )
               ), 
