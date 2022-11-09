@@ -31,7 +31,7 @@ function(input, output) {
                Origin, 
                Dest) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-      ggplot(aes(year_day, ave_delay)) +
+      ggplot(aes(input$date, ave_delay)) +
       geom_bar()
   }
   )
