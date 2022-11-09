@@ -24,14 +24,13 @@ function(input, output) {
     flights2 %>%
       filter(Airline == input$airline, 
              Origin == input$origin, 
-             Dest == input$destination,
-             year_day == near(yday(input$date))) %>%
+             Dest == input$destination) %>%
       group_by(year_day, 
                Airline, 
                Origin, 
                Dest) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-      ggplot(aes(year_day, ave_delay)) +
+      ggplot(aes(input$date, ave_delay)) +
       geom_bar()
   }
   )
