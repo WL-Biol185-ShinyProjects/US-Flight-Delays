@@ -123,6 +123,16 @@ flights$flight_day <- day(flights$flightDate)
 flights <- flights[-c(36)]
 flights$year_day <- yday(flights$flightDate)
 
+flights <- readRDS("all_flights_clean.Rdata")
+flights2 <- flights[-c(17:37)]
+flights2 <- flights2[-c(11:16)]
+flights2 <- flights2[-c(5:8)]
+flights2$FlightDate<-as.Date(flights2$FlightDate, format = "%m/%d/%Y")
+flights2$year_day <- yday(flights2$FlightDate)
+flights2$FlightDate<-as.Date(flights2$FlightDate, format = "%m/%d/%Y")
+flights2$year_day <- yday(flights2$FlightDate)
+saveRDS(flights2, file = "flights_clean_abbreviated.RDS")
+
 ##essential code - creates a vector containing the day of the year of a flight
 library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")

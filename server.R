@@ -2,13 +2,9 @@ library(shiny)
 library(leaflet)
 library(tidyverse)
 library(lubridate)
-flights <- readRDS("all_flights_clean.Rdata")
-flights2 <- flights[-c(17:37)]
-flights2 <- flights2[-c(11:16)]
-flights2 <- flights2[-c(5:8)]
-flights2$FlightDate<-as.Date(flights2$FlightDate, format = "%m/%d/%Y")
-flights2$year_day <- yday(flights2$FlightDate)
-help(filter)
+flights <- readRDS("flights_clean_abbreviated.RDS")
+
+
 function(input, output) {
   
  ## O <- (output$value <- renderText({ input$origin }))
@@ -24,7 +20,8 @@ function(input, output) {
     flights2 %>%
       filter(Airline == input$airline, 
              Origin == input$origin, 
-             Dest == input$destination) %>%
+             Dest == input$destination,
+             year_day >= yday(input$date)) %>%
       group_by(year_day, 
                Airline, 
                Origin, 
