@@ -143,10 +143,19 @@ View(airports)
 install.packages("airportr")
 c <- airports
 saveRDS(c, file = "airport_information.Rdata")
+c <- readRDS(file = "airport_information.Rdata")
+View(c)
+
+##data cleanup tidyverse select column to join the 2 tables 
 
 
 ##adding Airport IDs into App 
 ##server
 airports <- readRDS("airport_information.Rdata")
+
+##LeafletPopups from the Airport Data 
+
+
+##For the data tab, compare flight differences before and after covid-19? 
 
 
