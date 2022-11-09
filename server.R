@@ -26,7 +26,7 @@ function(input, output) {
       group_by(year_day, Airline, Origin, Dest) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
       ggplot(aes(year_day, ave_delay)) +
-      geom_point()
+      geom_bar()
   }
   )
   
