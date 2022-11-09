@@ -24,8 +24,7 @@ function(input, output) {
     flights2 %>%
       filter(Airline == input$airline, 
              Origin == input$origin, 
-             Dest == input$destination,
-             year_day == near(yday(input$date))) %>%
+             Dest == input$destination) %>%
       group_by(year_day, 
                Airline, 
                Origin, 
