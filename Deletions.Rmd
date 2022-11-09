@@ -136,3 +136,9 @@ airport_location("NAME", input_type = "IATA")
 a <- readRDS(file = "all_flights_clean.Rdata")
 View(a)
 ## is the airplane data package vectorized? Try that 
+## Merging the data sets for Airports lat and Long
+install.packages("airportr")
+library(airportr)
+View(airports)
+## viewing of airport data set for merge (Lefthand)
+
