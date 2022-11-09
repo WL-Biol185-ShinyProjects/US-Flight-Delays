@@ -3,6 +3,7 @@ library(leaflet)
 library(tidyverse)
 library(lubridate)
 flights <- readRDS("all_flights_clean.Rdata")
+airports <- readRDS("airport_information.Rdata")
 flights2 <- flights[-c(17:37)]
 flights2 <- flights2[-c(11:16)]
 flights2 <- flights2[-c(5:8)]
