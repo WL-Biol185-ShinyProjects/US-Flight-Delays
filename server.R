@@ -2,8 +2,9 @@ library(shiny)
 library(leaflet)
 library(tidyverse)
 library(lubridate)
+library(scales)
 flights <- readRDS("flights_clean_abbreviated.RDS")
-unique(flights$Airline)
+unique(flights$Origin)
 airports <- readRDS("airport_information.Rdata")
 
 function(input, output) {
@@ -18,21 +19,37 @@ function(input, output) {
   
   
   output$plot1 <- renderPlot( {
+    print("hi!")
     flights %>%
       filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
-             year_day == yday(input$date),
-             Origin == input$origin,
-             Dest == input$destination) %>%
-      group_by(year_day, 
-               Airline, 
-               Origin, 
-               Dest) %>%
+             year_day == yday(input$date) & 
+               yday(input$date) + 10 &
+               yday(input$date - 10)) %>%
+      group_by(year_day) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-      ggplot(aes(Airline, ave_delay)) +
-      labs(y = "Airline", x = "Flight Date")
+      ggplot(aes(year_day, ave_delay)) +
+      labs(y = "Departure Delay", x = "Flight Date") +
+      scale_x_continuous(breaks = pretty_breaks()) +
+      geom_boxplot()
+      
+  })
+  
+    output$plot2 <- renderPlot( {
+      flights %>%
+        filter(Airline == input$Airline, 
+               Origin == input$origin, 
+               Dest == input$destination,
+               year_day == yday(input$date)) %>%
+        group_by(year_day) %>%
+        summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+        ggplot(aes(flights$Airline, ave_delay)) +
+        labs(y = "Airline", x = "Flight Date") +
       geom_bar()
+      
+      
+
   }
   )
   
