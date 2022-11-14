@@ -114,8 +114,8 @@ dashboardPage(
       
 
       tabItem(tabName = "data",
+              h2("Flights Table:"),
               fluidPage(
-                h2("Data"),
                 box(
                   dataTableOutput("table"))
                
