@@ -3,6 +3,7 @@ library(leaflet)
 library(tidyverse)
 library(lubridate)
 flights <- readRDS("flights_clean_abbreviated.RDS")
+unique(flights$Airline)
 airports <- readRDS("airport_information.Rdata")
 
 function(input, output) {
@@ -18,10 +19,10 @@ function(input, output) {
   
   output$plot1 <- renderPlot( {
     flights %>%
-      filter(Airline == input$airline, 
+      filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
-             year_day >= yday(input$date) %>%
+             year_day == yday(input$date),
              Origin == input$origin,
              Dest == input$destination) %>%
       group_by(year_day, 
@@ -29,7 +30,8 @@ function(input, output) {
                Origin, 
                Dest) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-      ggplot(aes(input$date, ave_delay)) +
+      ggplot(aes(Airline, ave_delay)) +
+      labs(y = "Airline", x = "Flight Date")
       geom_bar()
   }
   )
