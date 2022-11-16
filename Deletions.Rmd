@@ -153,15 +153,8 @@ c %>% filter(IATA %in% e$IATA)
 usairports <- c %>% filter(IATA %in% e$IATA)
 View(usairports)
 
-
-##deletions on airport data table 
-f <- readRDS(file = "airport_information.Rdata")
-View(f)
-
-
-## want a data table of just the origins and destinations from alldata in the table of airport data (cleaning up that data)
-##index or select verb in tidyverse , use unique after creating a separate data table with just the column origin, then doing a left hand join with the airports data. 
-
+## remove line 9 airports <- readRDS("airport_information.Rdata") from the server and replace with 
+airports <- readRDS("usairports.Rdata)
 
 ##adding Airport IDs into App 
 ##server 
