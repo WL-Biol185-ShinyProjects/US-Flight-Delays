@@ -33,6 +33,7 @@ function(input, output) {
       ggplot(aes(year_day, ave_delay)) +
       labs(y = "Departure Delay", x = "Flight Date") +
       scale_x_continuous(breaks = pretty_breaks()) +
+      xlim(input$date + 10, input$date - 10) +
       geom_boxplot()
       
   })
