@@ -4,7 +4,7 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 flights <- readRDS("flights_clean_abbreviated.RDS")
-flights_noyd <- readRDS("flights_clean_noyd.Rdata")
+flights_DT <- readRDS("flights_DT.Rdata")
 unique(flights$Origin)
 airports <- readRDS("airport_information.Rdata")
 
@@ -68,7 +68,7 @@ function(input, output) {
   
   output$table <- renderDataTable(
     datatable(
-      {flights_noyd}, 
+      {flights_DT}, 
       filter = "top", 
       option = list(dom = 'ltipr'),
       caption = ("Flight data from 2018, 2020, and 2022")

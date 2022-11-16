@@ -11,7 +11,7 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Flight Time Predictor", tabName = "predictor"),
-      menuItem("Data", tabName = "data"),
+      menuItem("Flights Data", tabName = "data"),
       menuItem("Map of Airports", tabName = "map"),
       menuItem("About", tabName = "about")
                 )
