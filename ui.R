@@ -124,7 +124,7 @@ dashboardPage(
       tabItem(tabName = "map",
               h2("Map of Airports"), 
               fluidPage(
-                leafletOutput("mymap")
+                leafletOutput("mymap", width = 1800, height = 1000)
               )
       ), 
       tabItem(tabName = "about",
