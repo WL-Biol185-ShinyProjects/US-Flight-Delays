@@ -77,7 +77,7 @@ dashboardPage(
                                                                         "SUN", "IMT", "RHI", "ESC", "APN", "ABR", "PLN", "INL", "BRD", "HIB", "CIU", "PIH", "TWF", "EKO", "BJI", "CDC", "YKM", "PUW",
                                                                         "ALW", "EAT", "DLG", "AKN", "GUM", "SPN", "BIH", "MMH", "ISN", "UIN", "MKK", "LNY", "JHM", "ROP", "YNG", "DUT", "ACK", "MVY",
                                                                         "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST")),
-                dateInput("date", "Flight Date:", format = "mm/dd/yy"),
+                dateInput("date", "Flight Date:", format = "dd/mm/yy"),
                 selectInput('Airline', 'Airline', c("Commutair Aka Champlain Enterprises, Inc.",
                                                     "GoJet Airlines, LLC d/b/a United Express",
                                                     "Air Wisconsin Airlines Corp", "Mesa Airlines Inc.",

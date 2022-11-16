@@ -5,9 +5,7 @@ library(lubridate)
 library(scales)
 flights <- readRDS("flights_clean_abbreviated.RDS")
 flights_noyd <- readRDS("flights_clean_noyd.Rdata")
-unique(flights$Origin)
 airports <- readRDS("airport_information.Rdata")
-
 function(input, output) {
   
  ## O <- (output$value <- renderText({ input$origin }))
@@ -20,20 +18,18 @@ function(input, output) {
   
   
   output$plot1 <- renderPlot( {
-    print("hi!")
     flights %>%
       filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
-             year_day == yday(input$date) & 
-               yday(input$date) + 10 &
-               yday(input$date - 10)) %>%
+             year_day <= yday(input$date) + 10,
+             year_day >= yday(input$date) - 10
+             ) %>%
       group_by(year_day) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
       ggplot(aes(year_day, ave_delay)) +
       labs(y = "Departure Delay", x = "Flight Date") +
-      scale_x_continuous(breaks = pretty_breaks()) +
-      xlim(input$date + 10, input$date - 10) +
+      xlim(input$date - 10, input$date + 10) +
       geom_boxplot()
       
   })
