@@ -8,29 +8,23 @@ flights_noyd <- readRDS("flights_clean_noyd.Rdata")
 flights_DT <- readRDS("flights_DT.Rdata")
 airports <- readRDS("airport_information.Rdata")
 function(input, output) {
-  
- ## O <- (output$value <- renderText({ input$origin }))
- ## O <- as.character(O)
- ## D <- (output$value <- renderText({ input$destination }))
- ## D <- as.character(D)
- ## A <- (output$value <- renderText({ input$airline }))
- ## A <- as.character(A)
- ## dates <- yday(output$value <- renderText({ input$date }))
-  
-  
+
   output$plot1 <- renderPlot( {
     flights %>%
       filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
-             year_day <= (yday(input$date) + 10),
-             year_day >= yday((input$date) - 10)) %>%
+             year_day > (yday(input$date)) - 5,
+             year_day < (yday(input$date)) + 5) %>%
       group_by(year_day) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-      ggplot(aes(year_day, ave_delay)) +
+      ggplot +
+      aes(year_day, 
+          ave_delay, 
+          xmin = input$date - 5,
+          xmax = input$date + 5) +
       labs(y = "Departure Delay", x = "Flight Date") +
-      xlim(input$date - 10, input$date + 10) +
-      geom_boxplot()
+      geom_point()
       
   })
   
