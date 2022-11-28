@@ -168,6 +168,14 @@ library(htmltools)
       addTiles() %>%
       addMarkers(lng = ~Longitude, lat= ~Latitude)
   })
+##adding content to popups
+content <- 
+output$mymap <- renderLeaflet ({
+  leaflet(data = airports[1:17],) %>%
+      addTiles() %>%
+      addPopups(lng = ~Longitude, lat= ~Latitude, content)
+  })
+##merge column function -> paste 
 
 
 ## cut data into thirds so only one is ever loaded at a time in your dropdown menu (all_flights_clean.Rdata). 
