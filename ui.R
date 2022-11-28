@@ -13,7 +13,8 @@ dashboardPage(
       menuItem("Flight Time Predictor", tabName = "predictor"),
       menuItem("Flights Data", tabName = "data"),
       menuItem("Map of Airports", tabName = "map"),
-      menuItem("About", tabName = "about")
+      menuItem("About", tabName = "about"),
+      selectInput("year","Year", c("2018", "2020", "2022"))
                 )
   ),
     
@@ -115,7 +116,7 @@ dashboardPage(
 
       tabItem(tabName = "data",
               h2("Flights Table:"),
-              fluidPage(
+              fluidRow(
                 box(
                   dataTableOutput("table"))
                

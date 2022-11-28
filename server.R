@@ -5,8 +5,13 @@ library(lubridate)
 library(scales)
 flights <- readRDS("flights_clean_abbreviated.RDS")
 flights_DT <- readRDS("flights_DT.Rdata")
+"2018" <- readRDS("2018Flights.Rdata")
+"2020" <- readRDS("2020flights2.Rdata")
+"2022" <- readRDS("2022flights.Rdata")
 unique(flights$Origin)
-airports <- readRDS("airport_information.Rdata")
+airports <- readRDS("usairports.Rdata")
+
+loadedFlight <- reactive({tabletoLoad <- input$year})
 
 function(input, output) {
   
@@ -69,7 +74,7 @@ function(input, output) {
   
   output$table <- renderDataTable(
     datatable(
-      {flights_DT}, 
+      loadedFlight, 
       filter = "top", 
       option = list(dom = 'ltipr'),
       caption = ("Flight data from 2018, 2020, and 2022")
