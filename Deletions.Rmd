@@ -158,18 +158,34 @@ View(usairports)
 airports <- readRDS("usairports.Rdata)
 
 ##adding Airport IDs into App 
-##server 
-airports <- readRDS("airport_information.Rdata")
+##server at line 10 
+airports <- readRDS("usairports.Rdata")
 
+##at line 64 builds a functional map with popups
 library(htmltools)
-##At line 69 in server
-leaflet(data = airports[1:17],) %>%
-    addMarkers(lng = ~Longitude, lat= ~Latitude)
+ output$mymap <- renderLeaflet ({
+  leaflet(data = airports[1:17],) %>%
+      addTiles() %>%
+      addMarkers(lng = ~Longitude, lat= ~Latitude)
+  })
 
 
+## cut data into thirds so only one is ever loaded at a time in your dropdown menu (all_flights_clean.Rdata). 
+##loaded flights + reactive expression
+({
+tabletoload <- input$yearselecter
+readRDS(tabletoload)
+})
+output$plot <- renderPlot({
+ggplot(loadedflights()) + 
+})
 
+##dropdown menu
+choices = list(label = value, 
+label = value, 
+)
 
 ##For the data tab, compare flight differences before and after covid-19? 
-
+## wants correrational analysis, certain origins better, certain destination better, what visualizations address those questions
 
 
