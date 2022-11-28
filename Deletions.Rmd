@@ -119,6 +119,7 @@ library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
 flights$year_day <- yday(flights$flightDate)
 
+
 ## airportr package, gives lat and longitude for each airport - AIRPORT MAP DATA WRANGLING
 install.packages("airportr")
 library(airportr)
@@ -157,13 +158,42 @@ View(usairports)
 airports <- readRDS("usairports.Rdata)
 
 ##adding Airport IDs into App 
-##server 
-airports <- readRDS("airport_information.Rdata")
+##server at line 10 
+airports <- readRDS("usairports.Rdata")
 
-##LeafletPopups from the Airport Data 
+##at line 64 builds a functional map with popups
+library(htmltools)
+ output$mymap <- renderLeaflet ({
+  leaflet(data = airports[1:17],) %>%
+      addTiles() %>%
+      addMarkers(lng = ~Longitude, lat= ~Latitude)
+  })
+##adding content to popups
+content <- 
+output$mymap <- renderLeaflet ({
+  leaflet(data = airports[1:17],) %>%
+      addTiles() %>%
+      addPopups(lng = ~Longitude, lat= ~Latitude, content)
+  })
+##merge column function -> paste 
 
+
+## cut data into thirds so only one is ever loaded at a time in your dropdown menu (all_flights_clean.Rdata). 
+##loaded flights + reactive expression
+({
+tabletoload <- input$yearselecter
+readRDS(tabletoload)
+})
+output$plot <- renderPlot({
+ggplot(loadedflights()) + 
+})
+
+##dropdown menu
+choices = list(label = value, 
+label = value, 
+)
 
 ##For the data tab, compare flight differences before and after covid-19? 
-
+## wants correrational analysis, certain origins better, certain destination better, what visualizations address those questions
 
 

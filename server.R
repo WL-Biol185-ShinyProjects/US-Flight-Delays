@@ -3,6 +3,7 @@ library(leaflet)
 library(tidyverse)
 library(lubridate)
 library(scales)
+library(htmltools)
 flights <- readRDS("flights_clean_abbreviated.RDS")
 flights_DT <- readRDS("flights_DT.Rdata")
 "2018" <- readRDS("2018Flights.Rdata")
@@ -10,8 +11,11 @@ flights_DT <- readRDS("flights_DT.Rdata")
 "2022" <- readRDS("2022flights.Rdata")
 unique(flights$Origin)
 airports <- readRDS("usairports.Rdata")
+<<<<<<< HEAD
 
 loadedFlight <- reactive({tabletoLoad <- input$year})
+=======
+>>>>>>> 015bbebba0f7a6dfd80bc08f6d0f4a178a18b2e5
 
 function(input, output) {
   
@@ -66,10 +70,9 @@ function(input, output) {
     )
   })
   output$mymap <- renderLeaflet ({
-  m <- leaflet () %>%
-    addTiles() %>%
-    setView(lng=-95.15, lat =40 , zoom=3.5)
-  m
+  leaflet(data = airports[1:17],) %>%
+      addTiles() %>%
+      addMarkers(lng = ~Longitude, lat= ~Latitude)
   })
   
   output$table <- renderDataTable(
