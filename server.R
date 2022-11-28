@@ -22,9 +22,8 @@ function(input, output) {
       filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
-             year_day <= yday(input$date) + 10,
-             year_day >= yday(input$date) - 10
-             ) %>%
+             year_day <= (yday(input$date) + 10),
+             year_day >= yday((input$date) - 10)) %>%
       group_by(year_day) %>%
       summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
       ggplot(aes(year_day, ave_delay)) +
