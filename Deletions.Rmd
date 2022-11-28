@@ -119,6 +119,7 @@ library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
 flights$year_day <- yday(flights$flightDate)
 
+
 ## airportr package, gives lat and longitude for each airport - AIRPORT MAP DATA WRANGLING
 install.packages("airportr")
 library(airportr)
@@ -160,7 +161,12 @@ airports <- readRDS("usairports.Rdata)
 ##server 
 airports <- readRDS("airport_information.Rdata")
 
-##LeafletPopups from the Airport Data 
+library(htmltools)
+##At line 69 in server
+leaflet(data = airports[1:17],) %>%
+    addMarkers(lng = ~Longitude, lat= ~Latitude)
+
+
 
 
 ##For the data tab, compare flight differences before and after covid-19? 

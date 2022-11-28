@@ -3,10 +3,11 @@ library(leaflet)
 library(tidyverse)
 library(lubridate)
 library(scales)
+library(htmltools)
 flights <- readRDS("flights_clean_abbreviated.RDS")
 flights_DT <- readRDS("flights_DT.Rdata")
 unique(flights$Origin)
-airports <- readRDS("airport_information.Rdata")
+airports <- readRDS("usairports.Rdata")
 
 function(input, output) {
   
@@ -61,10 +62,9 @@ function(input, output) {
     )
   })
   output$mymap <- renderLeaflet ({
-  m <- leaflet () %>%
-    addTiles() %>%
-    setView(lng=-95.15, lat =40 , zoom=3.5)
-  m
+  leaflet(data = airports[1:17],) %>%
+      addTiles() %>%
+      addMarkers(lng = ~Longitude, lat= ~Latitude)
   })
   
   output$table <- renderDataTable(
