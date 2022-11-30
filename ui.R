@@ -120,9 +120,9 @@ dashboardPage(
               h2("Flights Table:"),
               fluidRow(
                 box(
-                  dataTableOutput("table"))
-               
-                      )
+                  dataTableOutput("table"),
+                  downloadButton('download', "Download")),
+               )
               ), 
       tabItem(tabName = "map",
               h2("Map of US Airports and IDs"), 
@@ -136,7 +136,6 @@ dashboardPage(
     )
               
             ),
-    #hey
 )
 
   
