@@ -184,7 +184,7 @@ airports <- readRDS("usairports.Rdata)
 
 ##adding Airport IDs into App 
 ##server at line 10 
-airports <- readRDS("usairports.Rdata")
+airports <- readRDS("usairportspopups.Rdata")
 
 ##at line 64 builds a functional map with popups
 library(htmltools)
@@ -193,14 +193,22 @@ library(htmltools)
       addTiles() %>%
       addMarkers(lng = ~Longitude, lat= ~Latitude)
   })
-##adding content to popups
-content <- 
-output$mymap <- renderLeaflet ({
-  leaflet(data = airports[1:17],) %>%
+  
+##adding content to popups @ line 60 builds a functional map with popups
+  output$mymap <- renderLeaflet ({
+    leaflet(data = airports[1:17],) %>%
+      setView(lng =-95.15, lat = 40, zoom = 3.5) %>%
       addTiles() %>%
-      addPopups(lng = ~Longitude, lat= ~Latitude, content)
+      addMarkers(lng = ~Longitude, lat= ~Latitude, popup = airports$popups)
   })
+  
 ##merge column function -> paste 
+paste("Name:", c$Name, "City:", c$City, "IATA ID:", c$IATA, "Timezone:", c$Timezone) 
+c$popups <- paste("Name:", c$Name, "City:", c$City, "IATA ID:", c$IATA, "Timezone:", c$Timezone)
+saveRDS(c, file = "usairportspopups.Rdata")
+## to do for drew
+##output table 2: exploratory data analysis
+##clean up popups in app 
 
 
 ## cut data into thirds so only one is ever loaded at a time in your dropdown menu (all_flights_clean.Rdata). 
