@@ -18,39 +18,42 @@ function(input, output) {
   
   output$plot1 <- renderPlot( {
     loaded_flights() %>%
-      filter(Airline == input$Airline, 
-             Origin == input$origin, 
-             Dest == input$destination,
-             year_day > (yday(input$date)) - 5,
-             year_day < (yday(input$date)) + 5) %>%
-      group_by(year_day) %>%
-      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-      ggplot +
-      aes(year_day, 
-          ave_delay, 
-          xmin = input$date - 5,
-          xmax = input$date + 5) +
-      labs(y = "Departure Delay", x = "Flight Date") +
-      geom_point()
       
+  selected_info <- filter( 
+             loaded_flights()$flights$Airline == input$Airline, 
+             loaded_flights()$Origin == input$origin, 
+             loaded_flights()$Dest == input$destination,
+             between(loaded_flights()$FlightDate,
+                     left = input$date - 5, 
+                     right = input$date + 5) ) %>%
+      group_by(year_day) %>%
+      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE))
+  
+      ggplot(selected_info,
+             aes(selected_info$FlightDate, 
+          selected_info$ave_delay) +
+      labs(y = "Departure Delay", 
+           x = "Flight Date") +
+      geom_point()
+      )
   })
   
-    output$plot2 <- renderPlot( {
-      loaded_flights() %>%
-        filter(Airline == input$Airline, 
-               Origin == input$origin, 
-               Dest == input$destination,
-               year_day == yday(input$date)) %>%
-        group_by(year_day) %>%
-        summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-        ggplot(aes(flights$Airline, ave_delay)) +
-        labs(y = "Airline", x = "Flight Date") +
-      geom_bar()
+ ##   output$plot2 <- renderPlot( {
+ ##     loaded_flights() %>%
+  ##      filter(Airline == input$Airline, 
+   ##            Origin == input$origin, 
+  ##             Dest == input$destination,
+  ##             year_day == yday(input$date)) %>%
+  ##      group_by(year_day) %>%
+  ##      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+  ##      ggplot(aes(flights$Airline, ave_delay)) +
+  ##      labs(y = "Airline", x = "Flight Date") +
+  ##    geom_bar()
       
       
 
-  }
-  )
+ ## }
+##  )
   
   output$menu <- renderMenu({
     sidebarMenu(
