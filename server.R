@@ -3,14 +3,19 @@ library(leaflet)
 library(tidyverse)
 library(lubridate)
 library(scales)
-flights <- readRDS("flights_clean_abbreviated.RDS")
 flights_noyd <- readRDS("flights_clean_noyd.Rdata")
 flights_DT <- readRDS("flights_DT.Rdata")
-airports <- readRDS("airport_information.Rdata")
+airports <- readRDS("usairports.Rdata")
+
 function(input, output) {
 
+  loaded_flights <- reactive({
+    table_to_load <- input$year 
+    readRDS(table_to_load)
+  })
+  
   output$plot1 <- renderPlot( {
-    flights %>%
+    loaded_flights %>%
       filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
@@ -29,7 +34,7 @@ function(input, output) {
   })
   
     output$plot2 <- renderPlot( {
-      flights %>%
+      loaded_flights %>%
         filter(Airline == input$Airline, 
                Origin == input$origin, 
                Dest == input$destination,

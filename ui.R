@@ -14,7 +14,7 @@ dashboardPage(
       menuItem("Flights Data", tabName = "data"),
       menuItem("Map of Airports", tabName = "map"),
       menuItem("About", tabName = "about"),
-      selectInput("year","Year", c("2018", "2020", "2022"))
+      selectInput("year","Year", c("2018.RDS", "2020.RDS", "2022.RDS"))
                 )
   ),
     
