@@ -10,9 +10,9 @@ dashboardPage(
   dashboardHeader(title = "Flight Status Predictor"),
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Flight Time Predictor", tabName = "predictor"),
+      menuItem("Flight Delay Predictor", tabName = "predictor"),
       menuItem("Flights Data", tabName = "data"),
-      menuItem("Map of Airports", tabName = "map"),
+      menuItem("Map of US Airports and IDs", tabName = "map"),
       menuItem("About", tabName = "about"),
       selectInput("year","Selelct Year", c("2018" = "2018.RDS",
                                           "2020" = "2020.RDS",
@@ -23,7 +23,7 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "predictor",
-            h2("Flight Time Predictor"),
+            h2("Flight Delay Predictor"),
             fluidRow(
               tabBox(
                 title = "Output",
@@ -125,7 +125,7 @@ dashboardPage(
                       )
               ), 
       tabItem(tabName = "map",
-              h2("Map of Airports"), 
+              h2("Map of US Airports and IDs"), 
               fluidPage(
                 leafletOutput("mymap", width = 1800, height = 1000)
               )
