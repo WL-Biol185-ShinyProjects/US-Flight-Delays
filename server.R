@@ -66,10 +66,10 @@ function(input, output) {
   
   output$table <- renderDataTable(
     datatable(
-      {flights_DT}, 
+      loaded_flights(), 
       filter = "top", 
       option = list(dom = 'ltipr'),
-      caption = ("Flight data from 2018, 2020, and 2022")
+      caption = ("Flight data from")
     )
   )
  
