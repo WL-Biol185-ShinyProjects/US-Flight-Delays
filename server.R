@@ -10,12 +10,14 @@ airports <- readRDS("usairports.Rdata")
 function(input, output) {
 
   loaded_flights <- reactive({
+    
     table_to_load <- input$year 
     readRDS(table_to_load)
+    
   })
   
   output$plot1 <- renderPlot( {
-    loaded_flights %>%
+    loaded_flights() %>%
       filter(Airline == input$Airline, 
              Origin == input$origin, 
              Dest == input$destination,
@@ -34,7 +36,7 @@ function(input, output) {
   })
   
     output$plot2 <- renderPlot( {
-      loaded_flights %>%
+      loaded_flights() %>%
         filter(Airline == input$Airline, 
                Origin == input$origin, 
                Dest == input$destination,
