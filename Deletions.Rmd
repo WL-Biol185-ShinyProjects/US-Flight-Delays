@@ -114,6 +114,31 @@ flights2$FlightDate<-as.Date(flights2$FlightDate, format = "%m/%d/%Y")
 flights2$year_day <- yday(flights2$FlightDate)
 saveRDS(flights2, file = "flights_clean_abbreviated.RDS")
 
+
+##creating three separate clean tables rather than one large one for data restructuring 
+
+a <- readRDS(file = "2018Flights.Rdata")
+a <- a[-c(5:8)]
+a <- a[-c(7:42)]
+a$FlightDate<-as.Date(a$FlightDate, format = "%m/%d/%Y")
+a$year_day <- yday(a$FlightDate)
+saveRDS(a, file = "2018_clean_concise.RDS")
+
+a <- readRDS(file = "2020flights2.Rdata")
+a <- a[-c(5:8)]
+a <- a[-c(7:42)]
+a <- a[-c(7:8)]
+a$FlightDate<-as.Date(a$FlightDate, format = "%m/%d/%Y")
+a$year_day <- yday(a$FlightDate)
+saveRDS(a, file = "2020_clean_concise.RDS")
+
+a <- readRDS(file = "2022flights.Rdata")
+a <- a[-c(5:8)]
+a <- a[-c(7:42)]
+a$FlightDate<-as.Date(a$FlightDate, format = "%m/%d/%Y")
+a$year_day <- yday(a$FlightDate)
+saveRDS(a, file = "2022_clean_concise.RDS")
+
 ##essential code - creates a vector containing the day of the year of a flight
 library(lubridate)
 flights$FlightDate<-as.Date(flights$FlightDate, format = "%m/%d/%Y")
@@ -195,5 +220,7 @@ label = value,
 
 ##For the data tab, compare flight differences before and after covid-19? 
 ## wants correrational analysis, certain origins better, certain destination better, what visualizations address those questions
+
+
 
 
