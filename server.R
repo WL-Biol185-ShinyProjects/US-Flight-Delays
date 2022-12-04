@@ -72,6 +72,16 @@ loaded_flights() %>%
       caption = ("Flight data from")
     )
   )
+  
+  output$download <- downloadHandler(
+    filename = function() {
+      paste(input$year, '.csv', sep='')
+    },
+    content = function(file) {
+      write.csv(loaded_flights(),file)
+    },
+    contentType = "text/csv"
+  )
  
   }
 
