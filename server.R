@@ -3,6 +3,7 @@ library(leaflet)
 library(tidyverse)
 library(lubridate)
 library(scales)
+library(ggplot2)
 flights_noyd <- readRDS("flights_clean_noyd.Rdata")
 flights_DT <- readRDS("flights_DT.Rdata")
 airports <- readRDS("usairports.Rdata")
@@ -17,25 +18,21 @@ function(input, output) {
   })
   
   output$plot1 <- renderPlot( {
-    loaded_flights() %>%
-      
-  selected_info <- filter( 
-             loaded_flights()$flights$Airline == input$Airline, 
-             loaded_flights()$Origin == input$origin, 
-             loaded_flights()$Dest == input$destination,
-             between(loaded_flights()$FlightDate,
-                     left = input$date - 5, 
-                     right = input$date + 5) ) %>%
+    
+loaded_flights() %>%
+        filter(loaded_flights()$Airline == input$Airline, 
+               loaded_flights()$Origin == input$origin, 
+               loaded_flights()$Dest == input$destination,
+               year_day >= yday(input$date)) %>%
       group_by(year_day) %>%
-      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE))
-  
-      ggplot(selected_info,
-             aes(selected_info$FlightDate, 
-          selected_info$ave_delay) +
+      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+      ggplot(aes(
+        x = parse_date_time(x= year_day, order = "j"),
+        y = ave_delay)) +
       labs(y = "Departure Delay", 
            x = "Flight Date") +
-      geom_point()
-      )
+      geom_bar(stat = 'identity')
+      
   })
   
  ##   output$plot2 <- renderPlot( {
