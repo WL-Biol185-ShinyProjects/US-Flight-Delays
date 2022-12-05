@@ -6,7 +6,7 @@ library(scales)
 library(ggplot2)
 flights_noyd <- readRDS("flights_clean_noyd.Rdata")
 flights_DT <- readRDS("flights_DT.Rdata")
-airports <- readRDS("usairports.Rdata")
+airports <- readRDS("usairportspopups.Rdata")
 
 function(input, output) {
 
@@ -58,10 +58,10 @@ loaded_flights() %>%
     )
   })
   output$mymap <- renderLeaflet ({
-  m <- leaflet () %>%
-    addTiles() %>%
-    setView(lng=-95.15, lat =40 , zoom=3.5)
-  m
+    leaflet(data = airports[1:17],) %>%
+      setView(lng =-95.15, lat = 40, zoom = 3.5) %>%
+      addTiles() %>%
+      addMarkers(lng = ~Longitude, lat= ~Latitude, popup = airports$popups)
   })
   
   output$table <- renderDataTable(
