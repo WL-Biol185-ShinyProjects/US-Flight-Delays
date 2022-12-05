@@ -40,13 +40,11 @@ loaded_flights() %>%
       loaded_flights() %>%
         
         filter(loaded_flights()$Origin == input$origin2) %>%
-        group_by(Origin) %>%
-        summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-        ggplot(aes(
-          ave_delay)) +
+        ggplot(aes(Origin,
+          DepDelayMinutes)) +
         labs(y = "Frequency of Delay",
              x = "Departure Delay Minutes") +
-      geom_histogram(binwidth = input$binwidth)
+      geom_point(stat = 'identity')
       
       
 
