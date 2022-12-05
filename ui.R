@@ -126,7 +126,8 @@ dashboardPage(
                                                                        "OGS", "PUB", "VCT", "DEC", "CYS", "LBF", "JST", "MCW", "RDD", "SHD", "CGI", "EAR", "MKG", "LWB", "LBL", "COD", "PIB", "BTM",
                                                                        "SUN", "IMT", "RHI", "ESC", "APN", "ABR", "PLN", "INL", "BRD", "HIB", "CIU", "PIH", "TWF", "EKO", "BJI", "CDC", "YKM", "PUW",
                                                                        "ALW", "EAT", "DLG", "AKN", "GUM", "SPN", "BIH", "MMH", "ISN", "UIN", "MKK", "LNY", "JHM", "ROP", "YNG", "DUT", "ACK", "MVY",
-                                                                       "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST"))
+                                                                       "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST")),
+                        sliderInput("binwidth", "Number of Bins", 0 , 50, 25)
               ),
               tabPanel("Destinations",
                      "Choose a destination",
