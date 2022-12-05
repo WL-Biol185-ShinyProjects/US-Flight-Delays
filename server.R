@@ -35,22 +35,19 @@ loaded_flights() %>%
       
   })
   
- ##   output$plot2 <- renderPlot( {
- ##     loaded_flights() %>%
-  ##      filter(Airline == input$Airline, 
-   ##            Origin == input$origin, 
-  ##             Dest == input$destination,
-  ##             year_day == yday(input$date)) %>%
-  ##      group_by(year_day) %>%
-  ##      summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-  ##      ggplot(aes(flights$Airline, ave_delay)) +
-  ##      labs(y = "Airline", x = "Flight Date") +
-  ##    geom_bar()
+    output$plot2 <- renderPlot( {
+      loaded_flights() %>%
+        filter(loaded_flights()$Origin == input$origin)
+        group_by(loaded_flights()$Origin) %>%
+        summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
+        ggplot(aes(loaded_flights()$Origin, ave_delay)) +
+        labs(y = "Airline", x = "Origin") +
+      geom_tile()
       
       
 
- ## }
-##  )
+  }
+  )
   
   output$menu <- renderMenu({
     sidebarMenu(
