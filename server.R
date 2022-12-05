@@ -29,26 +29,31 @@ loaded_flights() %>%
       ggplot(aes(
         x = parse_date_time(x= year_day, order = "j"),
         y = ave_delay)) +
-      labs(y = "Departure Delay", 
+      labs(y = "Departure Delay (minutes)", 
            x = "Flight Date") +
       geom_bar(stat = 'identity')
       
   })
   
     output$plot2 <- renderPlot( {
+      
       loaded_flights() %>%
-        filter(loaded_flights()$Origin == input$origin)
-        group_by(loaded_flights()$Origin) %>%
+        
+        filter(loaded_flights()$Origin == input$origin2) %>%
+        group_by(Origin) %>%
         summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
-        ggplot(aes(loaded_flights()$Origin, ave_delay)) +
-        labs(y = "Airline", x = "Origin") +
-      geom_tile()
+        ggplot(aes(
+          ave_delay)) +
+        labs(y = "Frequency of Delay",
+             x = "Departure Delay Minutes") +
+      geom_histogram(binwidth = input$binwidth)
       
       
 
-  }
-  )
+  })
   
+    
+    
   output$menu <- renderMenu({
     sidebarMenu(
       menuItem("Menu item", icon = icon("calendar"))
