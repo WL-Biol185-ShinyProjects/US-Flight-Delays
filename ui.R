@@ -121,7 +121,7 @@ dashboardPage(
               fluidRow(
                 box(
                   dataTableOutput("table"),
-                  downloadButton('download', "Download")),
+                  downloadLink('download', "Download")),
                )
               ), 
       tabItem(tabName = "map",
