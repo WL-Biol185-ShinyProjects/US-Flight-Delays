@@ -207,7 +207,6 @@ paste("Name:", c$Name, "City:", c$City, "IATA ID:", c$IATA, "Timezone:", c$Timez
 c$popups <- paste("Name:", c$Name, "City:", c$City, "IATA ID:", c$IATA, "Timezone:", c$Timezone)
 saveRDS(c, file = "usairportspopups.Rdata")
 ## to do for drew
-##output table 2: exploratory data analysis
 ##clean up popups in app 
 
 
