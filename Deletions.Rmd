@@ -232,6 +232,12 @@ label = value,
 
 Correlational Graph addition 
 Avg U.S. airport delay by time of year 
+##scatterplot
+group_by(c$FlightDate) %>%
+summarise(ave_delay = mean(c$DepDelayMinutes, na.rm = TRUE)) %>%
+ggplot(aes(c$FlightDate,c$ave_delay)) + geom_point()
+
+ggplot(c,aes(FlightDate,DepDelayMinutes)) + geom_point() 
 
 
 
