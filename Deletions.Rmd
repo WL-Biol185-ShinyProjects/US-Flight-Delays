@@ -230,5 +230,13 @@ label = value,
 ## wants correrational analysis, certain origins better, certain destination better, what visualizations address those questions
 
 
+Correlational Graph addition 
+Avg U.S. airport delay by time of year 
+
+
+
+
+rsconnect::writeManifest()
+getwd()
 
 

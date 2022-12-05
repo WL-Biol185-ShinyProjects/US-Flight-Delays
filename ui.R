@@ -7,10 +7,10 @@ library(DT)
 
 
 dashboardPage(
-  dashboardHeader(title = "Flight Status Predictor"),
+  dashboardHeader(title = "US Flight Status Analyzer"),
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Flight Delay Predictor", tabName = "predictor"),
+      menuItem("Flight Delay Analysis", tabName = "predictor"),
       menuItem("Flights Data", tabName = "data"),
       menuItem("Map of US Airports and IDs", tabName = "map"),
       menuItem("About", tabName = "about"),
@@ -23,7 +23,7 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "predictor",
-            h2("Flight Delay Predictor"),
+            h2("Flight Delay Analysis"),
             fluidRow(
               tabBox(
                 title = "Output",
