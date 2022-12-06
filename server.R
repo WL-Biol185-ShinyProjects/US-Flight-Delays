@@ -41,10 +41,10 @@ loaded_flights() %>%
         
         filter(loaded_flights()$Origin == input$origin2) %>%
         ggplot(aes(
-          Origin,
-          DepDelayMinutes)) +
-        labs(y = "Delay Minutes",
-             x = "Origin") +
+         Origin,
+         DepDelayMinutes)) +
+        labs(x = "Origin",
+             y = "Departure Delay Minutes") +
       geom_tile()
       
       
