@@ -132,7 +132,7 @@ dashboardPage(
               ),
               tabPanel("Destinations",
                      "Choose a destination",
-                     ##outputPlot("plot3"),
+                     plotOutput("plot3"),
                      selectInput("destination2", "Destination (Airport):", c("GJT", "HRL", "DRO", "IAH", "DEN", "TYS", "MOB", "LNK", "BHM", "IAD", "ECP", "AEX", "LFT", "BTR", "ABQ", "BUF", "ALB", "HSV",
                                                                             "TUL", "CPR", "CRP", "EWR", "DCA", "STL", "CVG", "RIC", "PVD", "CLT", "GSO", "ERI", "ORD", "LEX", "ABE", "CAK", "AVL", "DAY",
                                                                             "CHO", "ROA", "PWM", "LIT", "MKE", "BTV", "OMA", "GRB", "MLI", "SDF", "FNT", "CHS", "PIT", "TVC", "ATW", "DLH", "ROC", "SPI",
@@ -155,6 +155,7 @@ dashboardPage(
                                                                             "SUN", "IMT", "RHI", "ESC", "APN", "ABR", "PLN", "INL", "BRD", "HIB", "CIU", "PIH", "TWF", "EKO", "BJI", "CDC", "YKM", "PUW",
                                                                             "ALW", "EAT", "DLG", "AKN", "GUM", "SPN", "BIH", "MMH", "ISN", "UIN", "MKK", "LNY", "JHM", "ROP", "YNG", "DUT", "ACK", "MVY",
                                                                             "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST")),
+                     sliderInput("binwidth2", "Number of Bins", 0 , 50, 25)
                      )
               
             )

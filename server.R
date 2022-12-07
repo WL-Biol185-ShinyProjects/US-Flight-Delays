@@ -40,19 +40,30 @@ loaded_flights() %>%
       loaded_flights() %>%
         
         filter(loaded_flights()$Origin == input$origin2) %>%
-        group_by(Origin) %>%
-        summarise(ave_delay = mean(DepDelayMinutes, na.rm = TRUE)) %>%
         ggplot(aes(
-          ave_delay)) +
-        labs(y = "Frequency of Delay",
-             x = "Departure Delay Minutes") +
-      geom_histogram(binwidth = input$binwidth)
+          Origin,
+          DepDelayMinutes)) +
+        labs(y = "Delay Minutes",
+             x = "Origin") +
+      geom_tile()
       
       
 
   })
   
-    
+    output$plot3 <- renderPlot( {
+      
+      loaded_flights() %>%
+        
+        filter(loaded_flights()$Dest == input$destination2) %>%
+        ggplot(aes(
+          Dest,
+          DepDelayMinutes)) +
+        labs(y = "Departure Delay Minutes",
+             x = "Destination") +
+        geom_tile()
+      
+    })
     
   output$menu <- renderMenu({
     sidebarMenu(
