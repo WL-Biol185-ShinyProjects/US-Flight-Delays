@@ -188,9 +188,8 @@ dashboardPage(
                        
                        
                        ),
-              width = 12
               
-            )
+              width = 12)
           )
         ),
       
