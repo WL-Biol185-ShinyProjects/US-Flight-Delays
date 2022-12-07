@@ -155,7 +155,42 @@ dashboardPage(
                                                                             "SUN", "IMT", "RHI", "ESC", "APN", "ABR", "PLN", "INL", "BRD", "HIB", "CIU", "PIH", "TWF", "EKO", "BJI", "CDC", "YKM", "PUW",
                                                                             "ALW", "EAT", "DLG", "AKN", "GUM", "SPN", "BIH", "MMH", "ISN", "UIN", "MKK", "LNY", "JHM", "ROP", "YNG", "DUT", "ACK", "MVY",
                                                                             "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST")),
-                     )
+                     sliderInput("binwidth2", "Number of Bins", 0 , 50, 25)
+                     ),
+              tabPanel("Airlines",
+                       "Choose an Airline",
+                       ##plotOutput("plot4"),
+                       selectInput("airline2", "Airline:", c("Commutair Aka Champlain Enterprises, Inc.",
+                                                             "GoJet Airlines, LLC d/b/a United Express",
+                                                             "Air Wisconsin Airlines Corp", "Mesa Airlines Inc.",
+                                                             "Southwest Airlines Co.", 
+                                                             "Republic Airlines",
+                                                             "Endeavor Air Inc.", 
+                                                             "American Airlines Inc.",
+                                                             "Capital Cargo International",
+                                                             "SkyWest Airlines Inc.",
+                                                             "Alaska Airlines Inc.", 
+                                                             "JetBlue Airways", 
+                                                             "Delta Air Lines Inc.",
+                                                             "Frontier Airlines Inc.",
+                                                             "Allegiant Air",                            
+                                                             "Hawaiian Airlines Inc.",
+                                                             "Envoy Air", 
+                                                             "Spirit Air Lines",
+                                                             "Comair Inc.", 
+                                                             "Horizon Air",                              
+                                                             "United Air Lines Inc.",
+                                                             "ExpressJet Airlines Inc.",
+                                                             "Empire Airlines Inc.",
+                                                             "Trans States Airlines",
+                                                             "Cape Air",                                 
+                                                             "Compass Airlines", 
+                                                             "Virgin America", 
+                                                             "Peninsula Airways Inc.")),
+                       
+                       sliderInput("binwidth3", "Number of Bins", 0 , 50, 25)
+                       
+                       )
               
             )
           )
