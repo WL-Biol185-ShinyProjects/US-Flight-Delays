@@ -29,7 +29,7 @@ dashboardPage(
                 title = "Output",
                 # The id lets us use input$tabset1 on the server to find the current tab
                 id = "tabset1", height = "250px",
-                tabPanel("Dates", "Your flight vs. Other Dates", plotOutput("plot1"),
+                tabPanel("Dates", "Your flight vs. other dates in past years", plotOutput("plot1"),
                          selectInput("origin", "Origin (Airport):", c("GJT", "HRL", "DRO", "IAH", "DEN", "TYS", "MOB", "LNK", "BHM", "IAD", "ECP", "AEX", "LFT", "BTR", "ABQ", "BUF", "ALB", "HSV",
                                                                       "TUL", "CPR", "CRP", "EWR", "DCA", "STL", "CVG", "RIC", "PVD", "CLT", "GSO", "ERI", "ORD", "LEX", "ABE", "CAK", "AVL", "DAY",
                                                                       "CHO", "ROA", "PWM", "LIT", "MKE", "BTV", "OMA", "GRB", "MLI", "SDF", "FNT", "CHS", "PIT", "TVC", "ATW", "DLH", "ROC", "SPI",
@@ -104,7 +104,7 @@ dashboardPage(
                                                              "Virgin America", 
                                                              "Peninsula Airways Inc."))),
                 tabPanel("Origins", 
-                         "Choose an origin",
+                         "Choose an origin to see the historical distribution of delays",
                          plotOutput("plot2"),
                          selectInput("origin2", "Origin (Airport):", c("GJT", "HRL", "DRO", "IAH", "DEN", "TYS", "MOB", "LNK", "BHM", "IAD", "ECP", "AEX", "LFT", "BTR", "ABQ", "BUF", "ALB", "HSV",
                                                                        "TUL", "CPR", "CRP", "EWR", "DCA", "STL", "CVG", "RIC", "PVD", "CLT", "GSO", "ERI", "ORD", "LEX", "ABE", "CAK", "AVL", "DAY",
@@ -130,7 +130,7 @@ dashboardPage(
                                                                        "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST"))
               ),
               tabPanel("Destinations",
-                     "Choose a destination",
+                     "Choose a destination to see the historical distribution of delays",
                      plotOutput("plot3"),
                      selectInput("destination2", "Destination (Airport):", c("GJT", "HRL", "DRO", "IAH", "DEN", "TYS", "MOB", "LNK", "BHM", "IAD", "ECP", "AEX", "LFT", "BTR", "ABQ", "BUF", "ALB", "HSV",
                                                                             "TUL", "CPR", "CRP", "EWR", "DCA", "STL", "CVG", "RIC", "PVD", "CLT", "GSO", "ERI", "ORD", "LEX", "ABE", "CAK", "AVL", "DAY",
@@ -156,7 +156,7 @@ dashboardPage(
                                                                             "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST"))
                      ),
               tabPanel("Airlines",
-                       "Choose an Airline",
+                       "Choose an airline to see the historical distirbution of delays",
                        plotOutput("plot4"),
                        selectInput("airline2", "Airline:", c("Commutair Aka Champlain Enterprises, Inc.",
                                                              "GoJet Airlines, LLC d/b/a United Express",
