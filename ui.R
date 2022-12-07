@@ -159,7 +159,7 @@ dashboardPage(
                      ),
               tabPanel("Airlines",
                        "Choose an Airline",
-                       ##plotOutput("plot4"),
+                       plotOutput("plot4"),
                        selectInput("airline2", "Airline:", c("Commutair Aka Champlain Enterprises, Inc.",
                                                              "GoJet Airlines, LLC d/b/a United Express",
                                                              "Air Wisconsin Airlines Corp", "Mesa Airlines Inc.",
@@ -215,7 +215,17 @@ dashboardPage(
               h2("About our Project"),
               fluidPage(
                 box(
-                  "Hello"
+                  "This project features data from 2018, 2020, and 2022. Users can view historical delay data from 
+                  most US airports in order to make the most informed decisions possible about the destination or 
+                  departure point through which they want to fly.
+                  
+                  Furthermore, users can select the destination airport, departure airport, and their desired flight 
+                  date so as to see which dates have historically been the worst (or best) to fly on.
+                  
+                  Lastly, users can view a map showing information on US airports, and both peruse and download the
+                  data involved in the project.
+                  
+                  Users can see the original data here: https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022?resource=download&select=Combined_Flights_2022.parquet"
                 )
               )
               )

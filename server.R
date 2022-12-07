@@ -59,7 +59,23 @@ loaded_flights() %>%
           DepDelayMinutes)) +
         labs(y = "Frequency of Delay",
              x = "Departure Delay Minutes") +
-        geom_histogram(bins = input$binwidth)
+        geom_histogram()
+      
+      
+    })
+    
+    output$plot4<- renderPlot( {
+      
+      loaded_flights() %>%
+        
+        filter(loaded_flights()$Airline == input$airline2) %>%
+        ggplot(aes(
+          DepDelayMinutes)) +
+        labs(y = "Frequency of Delay",
+             x = "Departure Delay Minutes") +
+        geom_histogram()
+      
+      
       
     })
     
