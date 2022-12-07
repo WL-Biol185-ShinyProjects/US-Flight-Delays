@@ -29,7 +29,7 @@ loaded_flights() %>%
       ggplot(aes(
         x = parse_date_time(x= year_day, order = "j"),
         y = ave_delay)) +
-      labs(y = "Departure Delay (minutes)", 
+      labs(y = "Departure Delay Minutes", 
            x = "Flight Date") +
       geom_bar(stat = 'identity')
       
@@ -41,11 +41,10 @@ loaded_flights() %>%
         
         filter(loaded_flights()$Origin == input$origin2) %>%
         ggplot(aes(
-          Origin,
-          DepDelayMinutes)) +
-        labs(y = "Delay Minutes",
-             x = "Origin") +
-      geom_tile()
+         DepDelayMinutes)) +
+        labs(y = "Frequency of Delay",
+             x = "Departure Delay Minutes") +
+      geom_histogram()
       
       
 
@@ -57,11 +56,10 @@ loaded_flights() %>%
         
         filter(loaded_flights()$Dest == input$destination2) %>%
         ggplot(aes(
-          Dest,
           DepDelayMinutes)) +
-        labs(y = "Departure Delay Minutes",
-             x = "Destination") +
-        geom_tile()
+        labs(y = "Frequency of Delay",
+             x = "Departure Delay Minutes") +
+        geom_histogram(bins = input$binwidth)
       
     })
     
