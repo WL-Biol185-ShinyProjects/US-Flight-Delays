@@ -155,6 +155,7 @@ dashboardPage(
                                                                             "SUN", "IMT", "RHI", "ESC", "APN", "ABR", "PLN", "INL", "BRD", "HIB", "CIU", "PIH", "TWF", "EKO", "BJI", "CDC", "YKM", "PUW",
                                                                             "ALW", "EAT", "DLG", "AKN", "GUM", "SPN", "BIH", "MMH", "ISN", "UIN", "MKK", "LNY", "JHM", "ROP", "YNG", "DUT", "ACK", "MVY",
                                                                             "BKG", "HVN", "IPT", "CDB", "HYA", "ATY", "PIR", "WYS", "GST")),
+                     sliderInput("binwidth2", "Number of Bins", 0 , 50, 25)
                      )
               
             )
