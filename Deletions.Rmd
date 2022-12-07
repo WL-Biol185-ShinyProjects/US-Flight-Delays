@@ -252,3 +252,37 @@ airports <- readRDS("usairportspopupsfinal.Rdata")
       addMarkers(lng = ~Longitude, lat= ~Latitude, popup = airports$popupsclean)
   }) 
 
+
+## FOR DATA TABLE
+
+ output$table <- renderDataTable(
+    datatable(
+      loaded_flights(), 
+      filter = "top", 
+      option = list(dom = 'ltipr'),
+      caption = ("Flight data from")
+    )
+  )
+  
+
+tabItem(tabName = "data",
+              h2("Flights Table:"),
+              fluidRow(
+                box(
+                  dataTableOutput("table"),
+                  downloadLink('download', "Download this data")),
+               )
+              ),
+              
+              
+## FOR DOWNLOAD LINK
+
+output$download <- downloadHandler(
+    filename = function() {
+      paste(input$year, '.csv', sep='')
+    },
+    content = function(file) {
+      write.csv(loaded_flights(),file)
+    },
+    contentType = "text/csv"
+  )
