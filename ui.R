@@ -187,7 +187,8 @@ dashboardPage(
                                                              "Peninsula Airways Inc."))
                        
                        
-                       )
+                       ),
+              width = 12
               
             )
           )
@@ -199,7 +200,8 @@ dashboardPage(
               fluidRow(
                 box(
                   dataTableOutput("table"),
-                  downloadLink('download', "Download this data")),
+                  downloadLink('download', "Download this data"),
+                  width = 12),
                )
               ), 
       tabItem(tabName = "map",
