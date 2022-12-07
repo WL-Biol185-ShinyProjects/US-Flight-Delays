@@ -206,9 +206,9 @@ library(htmltools)
 paste("Name:", c$Name, "City:", c$City, "IATA ID:", c$IATA, "Timezone:", c$Timezone) 
 c$popups <- paste("Name:", c$Name, "City:", c$City, "IATA ID:", c$IATA, "Timezone:", c$Timezone)
 saveRDS(c, file = "usairportspopups.Rdata")
-## to do for drew
-##clean up popups in app 
-
+##Final clean popups
+c$popupsclean <- paste("Name:", c$Name, "   Iata ID:", c$IATA, "   City:", c$City, "   Timezone:", c$Timezone)
+saveRDS(c, file = "usairportspopupsfinal.Rdata")
 
 ## cut data into thirds so only one is ever loaded at a time in your dropdown menu (all_flights_clean.Rdata). 
 ##loaded flights + reactive expression
